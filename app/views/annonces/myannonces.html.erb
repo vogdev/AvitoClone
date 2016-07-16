@@ -1,0 +1,23 @@
+<% @MyAnnonces.each do |myannonce| %>
+  <div class="row  myannonce">
+  <%= link_to  myannonce do %>
+            <div class="col-md-3">
+                    <%= image_tag myannonce.image.url(:thumb) %>
+            </div>
+            <div class="col-md-3">
+                 <h3><%= myannonce.title %></h3>
+                   
+                
+                 <h3><%= myannonce.city %></h3>
+            </div>
+            <div class="col-md-3 pull-right">
+                <h3><%= myannonce.price %></h3>
+                <h4><%= myannonce.created_at%></h4>
+            </div>
+  <% end %>
+  <%= link_to 'Destroy',  myannonce,  method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to "Edit", edit_annonce_path(myannonce) %>
+  </div>
+<% end %>
+
+

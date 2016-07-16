@@ -1,0 +1,3 @@
+ADD paperclip gem                               Done
+ADD page for users to see their annonces  Done
+ADD bootstrap Done

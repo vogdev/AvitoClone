@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Avito</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "AvitoClone", root_path , class: "navbar-brand" %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Déposer une annonce", new_annonce_path, class: "btn btn-success dropdown-toggle" %>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Toutes les catégories <span class="caret"></span></a>
+       <ul class="dropdown-menu"> 
+      <% Category.all.each do |category|  %>
+      
+      <li>
+      <%= link_to category.name, annonces_path(category: category.name), class: "link" %>  
+      </li>
+
+      <% end %>
+        </ul> 
+      </li>
+        <%if !user_signed_in?%>
+          <li><%= link_to new_user_registration_path do %>
+            Sign Up<span class="glyphicon glyphicon-pencil"></span>
+          </li>
+          <%end%>
+        <%end%>
+        <% if user_signed_in? %>
+       
+          <li><%= link_to  myannonces_annonces_path do%>
+            MyAnnonces<span class="glyphicon glyphicon-folder-open"></span>
+            <% end %>
+          </li>
+          <li><%= link_to edit_user_registration_path do%>
+            Account<span class="glyphicon glyphicon-cog"></span>
+            <% end %>
+          </li>
+          <li><%= link_to destroy_user_session_path, method: :delete  do %>
+            Log Out<span class="glyphicon glyphicon-log-out"></span>
+            <% end %>
+          </li>
+         <% else %>  
+          <li><%= link_to new_user_session_path do %>
+          Log In<span class="glyphicon glyphicon-log-in"></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div class="container">
+
+<%= yield %>
+</div>
+
+</body>
+</html>

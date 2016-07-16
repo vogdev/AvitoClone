@@ -1,0 +1,31 @@
+<table class="table">
+            <tbody>
+              <tr>
+                <%= image_tag @annonce.image.url(:medium) %>
+              </tr>
+              <tr>
+                <td><strong>Title:</strong></td>
+                <td><%= @annonce.title %></td>
+              </tr>
+              <tr>
+                <td><strong>Description:</strong></td>
+                <td><%= @annonce.description %></td>
+              </tr>
+              <tr>
+                <td><strong>Prix:</strong></td>
+                <td><%= @annonce.price %></td>
+              </tr>
+              <tr>
+                <td><strong>Téléphone:</strong></td>
+                <td><%= @annonce.phone %></td>
+              </tr>
+              <tr>
+                <td><strong>Ville:</strong></td>
+                <td><%= @annonce.city %></td>
+              </tr>
+              <tr>
+                <td><strong>Contacter l'annonceur:</strong></td>
+                <td><%= @annonce.id %></td>
+              </tr>
+            </tbody>
+</table>

@@ -1,0 +1,25 @@
+<% @annonces.each do |annonce| %>
+  <div class="row  annonce">
+  <%= link_to  annonce do %>
+            <div class="col-md-3">
+                    <%= image_tag annonce.image.url(:thumb) %>
+            </div>
+            <div class="col-md-3">
+                 <h3><%= annonce.title %></h3>
+                   
+                
+                 <h3><%= annonce.city %></h3>
+            </div>
+            <div class="col-md-3 pull-right">
+                <h3><%= annonce.price %></h3>
+                <h4><%= annonce.created_at%></h4>
+            </div>
+  <% end %>
+  </div>
+<% end %>
+<div class="text-center">
+<%= will_paginate @annonce, renderer: BootstrapPagination::Rails, previous_label: h("back"), next_label: h("next") %>
+</div>
+
+
+

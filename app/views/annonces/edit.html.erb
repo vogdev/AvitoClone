@@ -1,0 +1,10 @@
+<%= simple_form_for @annonce, html: { multipart: true } do |f| %>
+  <%= f.input :title, label: "Titre de l'annonce" %>
+  <%= f.select :category_id, @categories %>
+  <%= f.input :description %>
+  <%= f.input :image, as: :file %>
+  <%= f.input :price, label: "Prix" %>
+  <%= f.input :phone, label: "Téléphone" %>
+  <%= f.input :city, label: "Ville" %>
+  <%= f.button :submit%>
+<% end %>
