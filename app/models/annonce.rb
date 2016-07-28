@@ -1,4 +1,5 @@
 class Annonce < ActiveRecord::Base
+	searchkick
 	belongs_to :user
 	belongs_to :category
 	 has_attached_file :image, styles: { medium: "400x600>", thumb: "150x150"}
