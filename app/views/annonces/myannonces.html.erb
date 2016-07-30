@@ -19,5 +19,7 @@
   <%= link_to "Edit", edit_annonce_path(myannonce) %>
   </div>
 <% end %>
-
+<div class="text-center">
+<%= will_paginate @MyAnnonces, renderer: BootstrapPagination::Rails, previous_label: h("back"), next_label: h("next") %>
+</div>
 

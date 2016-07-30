@@ -3,7 +3,8 @@ class AnnoncesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :search]
     def search
     	if params[:search].present?
-    		@annonces = Annonce.search(params[:search])
+    		@annonces = Annonce.search(params[:search], order: {created_at: :desc}, page: params[:page], per_page: 4)
+
     	else
     		@annonces = Annonce.all.order("created_at DESC").paginate(page: params[:page], per_page: 4)
     	end
@@ -19,7 +20,7 @@ class AnnoncesController < ApplicationController
 	end
 
 	def myannonces
-		@MyAnnonces = Annonce.where( :user_id => current_user.id )
+		@MyAnnonces = Annonce.where( :user_id => current_user.id ).order("created_at DESC").paginate(page: params[:page], per_page: 4)
 	end
 
 	def new
