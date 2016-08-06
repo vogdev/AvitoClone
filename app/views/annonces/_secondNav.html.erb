@@ -1,0 +1,32 @@
+<div class="container-fluid second_nav ">
+ <div class="row clearfix ">
+
+      <div class="second_nav_items">
+        
+
+         <%= form_tag search_annonces_path, :method => "get", class: "navbar-form", role: "search" do %>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+
+      <div class="categorys_dropdown dropdown pull-left">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <% if params[:category].blank? %>
+            <%= "Toutes les catégories" %>
+            <% else%>
+            <%= params[:category] %>
+        <% end %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <% Category.all.each do |category|  %>
+            <li>
+            <%= link_to category.name, annonces_path(category: category.name), class: "link" %>  
+            </li>
+            <% end %>
+        </ul>
+      </div>
+
+    <% end %>
+    </div>
+  </div>
+ </div><!-- /.container-fluid -->

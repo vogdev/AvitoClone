@@ -29,3 +29,19 @@
     -o-transition: border .2s ease-in-out;
     transition: border .2s ease-in-out;
 }
+.navbar-inverse {
+    background-color: #607D8B;
+    border-color: #607d8b;
+}
+.second_nav {
+    background-color: #2898fb;
+    height: 80px;
+    margin-bottom: 30px;
+    margin-top: -42px;
+}
+.second_nav_items {
+    display: block;
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 50%;
+}

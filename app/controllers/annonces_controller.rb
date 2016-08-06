@@ -1,13 +1,14 @@
 class AnnoncesController < ApplicationController
 	before_action :find_annonce, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show, :search]
-    def search
-    	if params[:search].present?
-    		@annonces = Annonce.search(params[:search], order: {created_at: :desc}, page: params[:page], per_page: 4)
 
-    	else
-    		@annonces = Annonce.all.order("created_at DESC").paginate(page: params[:page], per_page: 4)
-    	end
+    def search
+    	query = params[:search].presence || "*"
+    		@annonces = Annonce.search(
+    		 query,{
+    		 order: {created_at: :desc}, 
+    		 page: params[:page], per_page: 4})
+
     end
 
 	def index
@@ -17,10 +18,6 @@ class AnnoncesController < ApplicationController
 	     	@category_id = Category.find_by(name: params[:category]).id
 	     	@annonces = Annonce.where(:category_id => @category_id).order("created_at DESC").paginate(page: params[:page], per_page: 4)
 		end
-	end
-
-	def myannonces
-		@MyAnnonces = Annonce.where( :user_id => current_user.id ).order("created_at DESC").paginate(page: params[:page], per_page: 4)
 	end
 
 	def new
@@ -65,9 +62,12 @@ class AnnoncesController < ApplicationController
 		else
 			render 'show'
 		end
-
 	end
 	
+	def myannonces
+		@MyAnnonces = Annonce.where( :user_id => current_user.id ).order("created_at DESC").paginate(page: params[:page], per_page: 4)
+	end
+
 	private
 
 	def annonce_params
